@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volatility Calculator</title>
+    <script>
+        function toggleFormElement() {
+            var fileInput = document.getElementById('file');
+            var directoryInput = document.getElementById('directory');
+
+            if (document.getElementById('fileRadio').checked) {
+                fileInput.disabled = false;
+                directoryInput.disabled = true;
+            } else if (document.getElementById('directoryRadio').checked) {
+                fileInput.disabled = true;
+                directoryInput.disabled = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Volatility Calculator</h1>
+    <form action="/calculate_volatility" method="post" enctype="multipart/form-data">
+        <input type="radio" id="fileRadio" name="inputType" value="file" checked onclick="toggleFormElement()">
+        <label for="file">Upload CSV File:</label>
+        <input type="file" id="file" name="file" accept=".csv">
+        <br>
+        <input type="radio" id="directoryRadio" name="inputType" value="directory" onclick="toggleFormElement()">
+        <label for="directory">Or Enter Directory Path:</label>
+        <input type="text" id="directory" name="directory">
+        <br>
+        <input type="submit" value="Calculate Volatility">
+    </form>
+</body>
+</html>
